@@ -1,45 +1,18 @@
-package com.fortech.academy.library.entities;
+package com.fortech.academy.library.controller;
 
+public class CreateBookRequest {
 
-import jakarta.persistence.*;
-
-@Entity
-@Table(name = "books")
-public class Book {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
-    private Long id;
-
-    @Column(name = "enabled")
     private boolean isEnabled;
 
-    @Column(name = "isbn")
     private String isbn;
 
-    @Column(name = "authors")
     private String authors;
 
-    @Column(name = "title")
     private String title;
 
-    @Column(name = "year")
     private int year;
 
-    public Book() {
-    }
-
-    public Book(boolean isEnabled, String isbn, String authors, String title, int year) {
-        this.isEnabled = isEnabled;
-        this.isbn = isbn;
-        this.authors = authors;
-        this.title = title;
-        this.year = year;
-    }
-
-    public Long getId() {
-        return id;
+    public CreateBookRequest() {
     }
 
     public boolean isEnabled() {
@@ -81,6 +54,4 @@ public class Book {
     public void setYear(int year) {
         this.year = year;
     }
-
-
 }

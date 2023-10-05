@@ -1,5 +1,6 @@
 package com.fortech.academy.library.service;
 
+import com.fortech.academy.library.controller.CreateBookRequest;
 import com.fortech.academy.library.entities.Book;
 import com.fortech.academy.library.repository.BooksRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,5 +20,10 @@ public class BooksService {
 
     public List<Book> getAllBooks() {
         return booksRepository.findAll();
+    }
+
+    public void addBook(Book newBook) {
+        booksRepository.save(newBook);
+
     }
 }

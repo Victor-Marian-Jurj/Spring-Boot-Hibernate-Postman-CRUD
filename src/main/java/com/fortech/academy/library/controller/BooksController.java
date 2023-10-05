@@ -3,9 +3,7 @@ package com.fortech.academy.library.controller;
 import com.fortech.academy.library.entities.Book;
 import com.fortech.academy.library.service.BooksService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -25,9 +23,21 @@ public class BooksController {
         return "It works...";
     }
 
+    @PostMapping
+    public void createBook(@RequestBody CreateBookRequest requestBody) {
+        Book newBook = new Book();
+        newBook.setEnabled(true);
+        newBook.setIsbn(requestBody.getIsbn());
+        newBook.setAuthors(requestBody.getAuthors());
+        newBook.setTitle(requestBody.getTitle());
+        newBook.setYear(requestBody.getYear());
+        booksService.addBook(newBook);
+    }
+
     @GetMapping
-    public List<Book> getAllBooks() {
+    public List<Book> readAllBooks() {
         return booksService.getAllBooks();
     }
+
 
 }
