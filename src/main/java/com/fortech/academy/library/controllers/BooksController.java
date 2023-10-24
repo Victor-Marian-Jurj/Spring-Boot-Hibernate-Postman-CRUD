@@ -47,4 +47,14 @@ public class BooksController {
         ReadAllBooksResponse responseBody = new ReadAllBooksResponse(books);
         return ResponseEntity.ok(responseBody);
     }
+
+    @DeleteMapping("{id}")
+    public ResponseEntity<Book> disableBookById(@PathVariable Long id) {
+        try {
+            Book responseBody = booksService.disableBookById(id);
+            return ResponseEntity.ok(responseBody);
+        } catch (NoSuchElementException exception) {
+            return ResponseEntity.notFound().build();
+        }
+    }
 }

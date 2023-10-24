@@ -2,6 +2,7 @@ package com.fortech.academy.library.services;
 
 import com.fortech.academy.library.entities.Book;
 import com.fortech.academy.library.repositories.BooksRepository;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -31,4 +32,10 @@ public class BooksService {
     }
 
 
+    @Transactional
+    public Book disableBookById(Long id) {
+        Book book = booksRepository.findById(id).orElseThrow();
+        book.setEnabled(false);
+        return book;
+    }
 }
