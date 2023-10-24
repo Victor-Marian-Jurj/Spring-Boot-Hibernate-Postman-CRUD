@@ -46,8 +46,10 @@ public ResponseEntity<Book> readBookById(@PathVariable Long id) {
         }
 }
     @GetMapping
-    public List<Book> readAllBooks() {
-        return booksService.getAllBooks();
+    public ResponseEntity<ReadAllBooksResponse> readAllBooks() {
+        List<Book> books = booksService.getAllBooks();
+        ReadAllBooksResponse responseBody = new ReadAllBooksResponse(books);
+        return ResponseEntity.ok(responseBody);
     }
 
 
