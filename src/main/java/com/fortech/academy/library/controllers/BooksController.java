@@ -20,11 +20,6 @@ public class BooksController {
         this.booksService = booksService;
     }
 
-    @GetMapping("test")
-    public String test() {
-        return "It works...";
-    }
-
     @PostMapping
     public void createBook(@RequestBody CreateBookRequest requestBody) {
         Book newBook = new Book();
@@ -36,21 +31,20 @@ public class BooksController {
         booksService.addBook(newBook);
     }
 
-@GetMapping ("{id}")
-public ResponseEntity<Book> readBookById(@PathVariable Long id) {
+    @GetMapping("{id}")
+    public ResponseEntity<Book> readBookById(@PathVariable Long id) {
         try {
             Book responseBody = booksService.getBookById(id);
             return ResponseEntity.ok(responseBody);
-        }catch (NoSuchElementException exception){
+        } catch (NoSuchElementException exception) {
             return ResponseEntity.notFound().build();
         }
-}
+    }
+
     @GetMapping
     public ResponseEntity<ReadAllBooksResponse> readAllBooks() {
         List<Book> books = booksService.getAllBooks();
         ReadAllBooksResponse responseBody = new ReadAllBooksResponse(books);
         return ResponseEntity.ok(responseBody);
     }
-
-
 }
