@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.NoSuchElementException;
 
 @Service
 public class BooksService {
@@ -18,12 +19,17 @@ public class BooksService {
         this.booksRepository = booksRepository;
     }
 
+    public void addBook(Book newBook) {
+        booksRepository.save(newBook);
+    }
+
+    public Book getBookById(Long id) throws NoSuchElementException {
+        return booksRepository.findById(id).orElseThrow();
+    }
+
     public List<Book> getAllBooks() {
         return booksRepository.findAll();
     }
 
-    public void addBook(Book newBook) {
-        booksRepository.save(newBook);
 
-    }
 }

@@ -3,9 +3,11 @@ package com.fortech.academy.library.controller;
 import com.fortech.academy.library.entities.Book;
 import com.fortech.academy.library.service.BooksService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.NoSuchElementException;
 
 @RestController
 @RequestMapping("books")
@@ -34,6 +36,15 @@ public class BooksController {
         booksService.addBook(newBook);
     }
 
+@GetMapping ("{id}")
+public ResponseEntity<Book> readBookById(@PathVariable Long id) {
+        try {
+            Book responseBody = booksService.getBookById(id);
+            return ResponseEntity.ok(responseBody);
+        }catch (NoSuchElementException exception){
+            return ResponseEntity.notFound().build();
+        }
+}
     @GetMapping
     public List<Book> readAllBooks() {
         return booksService.getAllBooks();
