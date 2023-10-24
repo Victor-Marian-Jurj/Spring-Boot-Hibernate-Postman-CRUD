@@ -1,7 +1,7 @@
-package com.fortech.academy.library.controller;
+package com.fortech.academy.library.controllers;
 
 import com.fortech.academy.library.entities.Book;
-import com.fortech.academy.library.service.BooksService;
+import com.fortech.academy.library.services.BooksService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

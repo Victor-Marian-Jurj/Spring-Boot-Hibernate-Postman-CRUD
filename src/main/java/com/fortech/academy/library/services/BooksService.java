@@ -1,8 +1,7 @@
-package com.fortech.academy.library.service;
+package com.fortech.academy.library.services;
 
-import com.fortech.academy.library.controller.CreateBookRequest;
 import com.fortech.academy.library.entities.Book;
-import com.fortech.academy.library.repository.BooksRepository;
+import com.fortech.academy.library.repositories.BooksRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
