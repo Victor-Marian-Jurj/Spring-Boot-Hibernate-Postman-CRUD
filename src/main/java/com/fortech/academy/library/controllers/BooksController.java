@@ -2,7 +2,8 @@ package com.fortech.academy.library.controllers;
 
 import com.fortech.academy.library.entities.Book;
 import com.fortech.academy.library.services.BooksService;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -11,14 +12,11 @@ import java.util.NoSuchElementException;
 
 @RestController
 @RequestMapping("books")
+@RequiredArgsConstructor
+@Slf4j
 public class BooksController {
 
     private final BooksService booksService;
-
-    @Autowired
-    public BooksController(BooksService booksService) {
-        this.booksService = booksService;
-    }
 
     @PostMapping
     public void createBook(@RequestBody CreateBookRequest requestBody) {
@@ -43,6 +41,7 @@ public class BooksController {
 
     @GetMapping
     public ResponseEntity<ReadAllBooksResponse> readAllBooks() {
+        log.info("readAllBooks");
         List<Book> books = booksService.getAllBooks();
         ReadAllBooksResponse responseBody = new ReadAllBooksResponse(books);
         return ResponseEntity.ok(responseBody);
