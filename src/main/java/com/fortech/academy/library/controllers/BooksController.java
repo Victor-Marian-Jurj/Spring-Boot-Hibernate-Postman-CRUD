@@ -5,6 +5,7 @@ import com.fortech.academy.library.services.BooksService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -40,8 +41,10 @@ public class BooksController {
     }
 
     @GetMapping
-    public ResponseEntity<ReadAllBooksResponse> readAllBooks() {
+    public ResponseEntity<ReadAllBooksResponse> readAllBooks(Authentication authentication) {
         log.info("readAllBooks");
+        log.info("authentication = {}", authentication);
+        log.info("authentication.getName = {}", authentication.getName());
         List<Book> books = booksService.getAllBooks();
         ReadAllBooksResponse responseBody = new ReadAllBooksResponse(books);
         return ResponseEntity.ok(responseBody);
